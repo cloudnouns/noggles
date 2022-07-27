@@ -3,7 +3,7 @@
 	import { animate } from 'motion';
 
 	export let fixed = false;
-	export let frameColor = '#e8705b';
+	export let customColor = '#e8705b';
 	export let flipEyes = false;
 
 	const position = fixed ? opts.fixed : opts.box;
@@ -23,5 +23,5 @@
 	<path fill-rule="evenodd" clip-rule="evenodd" d={leftEye.pupil} fill={leftEyeColors[1]} />
 	<path fill-rule="evenodd" clip-rule="evenodd" d={rightEye.white} fill={rightEyeColors[0]} />
 	<path fill-rule="evenodd" clip-rule="evenodd" d={rightEye.pupil} fill={rightEyeColors[1]} />
-	<path fill-rule="evenodd" clip-rule="evenodd" d={frames} fill={frameColor} />
+	<path fill-rule="evenodd" clip-rule="evenodd" d={frames} fill={customColor} />
 </svg>
