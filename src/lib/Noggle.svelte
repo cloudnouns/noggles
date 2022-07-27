@@ -1,8 +1,10 @@
 <script>
 	import opts from '$lib/noggle.config.ts';
+	const { palette } = opts;
 	import { animate } from 'motion';
 
 	export let fixed = false;
+	export let glasses;
 	export let customColor = '#e8705b';
 	export let flipEyes = false;
 
@@ -12,6 +14,7 @@
 	let leftEyeColors = ['#fff', '#000'];
 	let rightEyeColors = ['#fff', '#000'];
 
+	const frameColor = glasses ? palette[glasses] : null;
 	if (flipEyes) {
 		leftEyeColors.reverse();
 		rightEyeColors.reverse();
@@ -23,5 +26,5 @@
 	<path fill-rule="evenodd" clip-rule="evenodd" d={leftEye.pupil} fill={leftEyeColors[1]} />
 	<path fill-rule="evenodd" clip-rule="evenodd" d={rightEye.white} fill={rightEyeColors[0]} />
 	<path fill-rule="evenodd" clip-rule="evenodd" d={rightEye.pupil} fill={rightEyeColors[1]} />
-	<path fill-rule="evenodd" clip-rule="evenodd" d={frames} fill={customColor} />
+	<path fill-rule="evenodd" clip-rule="evenodd" d={frames} fill={frameColor || customColor} />
 </svg>
