@@ -3,7 +3,6 @@
 	import Noggle from '$lib/Noggle.svelte';
 
 	let noun = new Noun({ traits: { glasses: 'n' } });
-	console.log(noun.seed.glasses);
 </script>
 
 <div class="flex items-center justify-center min-h-screen bg-[#dcff70]">
