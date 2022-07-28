@@ -1,11 +1,12 @@
 <script>
+	import { onMount } from 'svelte';
 	import opts from '$lib/noggle.config.ts';
 	const { palette } = opts;
 	import { animate } from 'motion';
 
 	export let fixed = false;
 	export let glasses;
-	export let customColor = '#e8705b';
+	export let customColor = '#c1c1c1';
 	export let flipEyes = false;
 
 	const position = fixed ? opts.fixed : opts.box;
@@ -22,10 +23,40 @@
 		eyeColors[1].reverse();
 	}
 
-	const blink = () => {};
+	const rainbowFrames = () => {
+		animate(
+			'#frames',
+			{
+				fill: [
+					'#ef4444',
+					'#f97316',
+					'#f59e0b',
+					'#eab308',
+					'#84cc16',
+					'#22c55e',
+					'#10b981',
+					'#14b8a6',
+					'#06b6d4',
+					'#0ea5e9',
+					'#3b82f6',
+					'#6366f1',
+					'#8b5cf6',
+					'#a855f7',
+					'#d946ef',
+					'#ec4899',
+					'#f43f5e'
+				]
+			},
+			{ easing: 'linear', duration: 10, repeat: Infinity }
+		);
+	};
+
+	onMount(() => {
+		rainbowFrames();
+	});
 </script>
 
-<svg xmlns="http://www.w3.org/2000/svg" {viewBox} fill="none">
+<svg id="noggle" xmlns="http://www.w3.org/2000/svg" {viewBox} fill="none">
 	<path id="le0" fill-rule="evenodd" clip-rule="evenodd" d={left.white} fill={eyeColors[0][0]} />
 	<path id="le1" fill-rule="evenodd" clip-rule="evenodd" d={left.pupil} fill={eyeColors[0][1]} />
 	<path id="re0" fill-rule="evenodd" clip-rule="evenodd" d={right.white} fill={eyeColors[1][0]} />
@@ -38,3 +69,7 @@
 		fill={frameColor || customColor}
 	/>
 </svg>
+
+<div class="flex justify-center">
+	<button class="bg-white mt-10 px-3 py-1 text-lg border">Animate</button>
+</div>
