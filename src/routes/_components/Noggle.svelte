@@ -1,17 +1,17 @@
 <script>
 	import { onMount } from 'svelte';
-	import opts from '$lib/noggle.config.ts';
+	import opts from '$lib/_pkg/noggle.config.ts';
 	const { palette } = opts;
 	import { animate } from 'motion';
 
 	export let fixed = false;
 	export let glasses;
-	export let customColor = '#c1c1c1';
+	export let customColor = '#dcff70';
 	export let flipEyes = false;
 
 	const position = fixed ? opts.fixed : opts.box;
 	const { viewBox, frames, left, right } = position;
-	const frameColor = glasses ? palette[glasses] : null;
+	const frameColor = glasses ? palette[glasses] : 'white';
 
 	let eyeColors = [
 		['#fff', '#000'],
@@ -53,6 +53,8 @@
 
 	onMount(() => {
 		rainbowFrames();
+		// 0-21 || '#0..0' || keywords ('rainbow') or ().rainbow()
+		// nog = new Noggle('#dcff70');
 	});
 </script>
 
