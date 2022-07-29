@@ -1,87 +1,57 @@
 const rainbow = `
 @keyframes frames-fill {
   0% {
-    fill: #ef4444;
+    fill: rgb(255, 0, 0, 1);
     animation-timing-function: linear;
   }
 
-  6.25% {
-    fill: #f97316;
+  10% {
+    fill: rgb(255, 154, 0, 1);
     animation-timing-function: linear;
   }
 
-  12.5% {
-    fill: #f59e0b;
+  20% {
+    fill: rgb(208, 222, 33, 1);
     animation-timing-function: linear;
   }
 
-  18.75% {
-    fill: #eab308;
+  30% {
+    fill: rgb(79, 220, 74, 1);
     animation-timing-function: linear;
   }
 
-  25% {
-    fill: #84cc16;
-    animation-timing-function: linear;
-  }
-
-  31.25% {
-    fill: #22c55e;
-    animation-timing-function: linear;
-  }
-
-  37.5% {
-    fill: #10b981;
-    animation-timing-function: linear;
-  }
-
-  43.75% {
-    fill: #14b8a6;
+  40% {
+    fill: rgb(63, 218, 216, 1);
     animation-timing-function: linear;
   }
 
   50% {
-    fill: #06b6d4;
+    fill: rgb(47, 201, 226, 1);
     animation-timing-function: linear;
   }
 
-  56.25% {
-    fill: #0ea5e9;
+  60% {
+    fill: rgb(28, 127, 238, 1);
     animation-timing-function: linear;
   }
 
-  62.5% {
-    fill: #3b82f6;
+  70% {
+    fill: rgb(95, 21, 242, 1);
     animation-timing-function: linear;
   }
 
-  68.75% {
-    fill: #6366f1;
+  80% {
+    fill: rgb(186, 12, 248, 1);
     animation-timing-function: linear;
   }
 
-  75% {
-    fill: #8b5cf6;
-    animation-timing-function: linear;
-  }
-
-  81.25% {
-    fill: #a855f7;
-    animation-timing-function: linear;
-  }
-
-  87.5% {
-    fill: #d946ef;
-    animation-timing-function: linear;
-  }
-
-  93.75% {
-    fill: #ec4899;
+  90% {
+    fill: rgb(251, 7, 217, 1);
     animation-timing-function: linear;
   }
 
   100% {
-    fill: #f43f5e;
+    fill: rgb(255, 0, 0, 1);
   }
 }
 
