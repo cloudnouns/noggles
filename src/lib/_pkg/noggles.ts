@@ -13,8 +13,8 @@ export class Noggles {
 	static id(id: number, props?: NoggleProps): string {
 		const data = glasses.find((g) => id === g.id);
 		if (!data) throw new Error(`Invalid id: ${id}`);
-		const { colors, position } = parseNoggleData(data.colors, props);
-		return buildNoggle(colors, position);
+		const noggle = parseNoggleData(data, props);
+		return buildNoggle(noggle);
 	}
 
 	static color(color: typeof NamedNoggles[number], props?: NoggleProps): string {
@@ -24,24 +24,24 @@ export class Noggles {
 				`Invalid color. ${color} is not an official noggle color. Use Noggles.customColor() to customize noggle colors.`
 			);
 		}
-		const { colors, position } = parseNoggleData(data.colors, props);
-		return buildNoggle(colors, position);
+		const noggle = parseNoggleData(data, props);
+		return buildNoggle(noggle);
 	}
 
 	static customColor(color: string | string[], props?: NoggleProps): string {
-		const { colors, position } = parseCustomColorProps(color, props);
-		return buildNoggle(colors, position);
+		const noggle = parseCustomColorProps(color, props);
+		return buildNoggle(noggle);
 	}
 
 	static random(props?: NoggleProps): string {
-		const { colors, position } = parseNoggleData(getRandomNoggleData().colors, props);
-		return buildNoggle(colors, position);
+		const noggle = parseNoggleData(getRandomNoggleData(), props);
+		return buildNoggle(noggle);
 	}
 
 	static rainbow(props?: NoggleProps): string {
 		if (!props) props = { animation: 'rainbow' };
 		if (props && !props?.animation) props.animation = 'rainbow';
-		const { colors, position } = parseCustomColorProps('red', props);
-		return buildNoggle(colors, position, props.animation);
+		const noggle = parseCustomColorProps('red', props);
+		return buildNoggle(noggle, props.animation);
 	}
 }
