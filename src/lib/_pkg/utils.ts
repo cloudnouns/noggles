@@ -1,11 +1,12 @@
 import type {
-	CustomColorNoggleProps,
 	NoggleColors,
 	NoggleConfigFile,
 	NoggleData,
 	PositionData,
 	NoggleProps
 } from '$lib/global';
+import { animations } from './animations';
+import { nanoid } from 'nanoid';
 import ImageData from './image-data.json';
 import validateColor from 'validate-color';
 
@@ -14,8 +15,10 @@ export const { glasses, positions } = Config;
 
 export const buildNoggle = (
 	colors: NoggleColors,
-	position: PositionData = positions.default
+	position: PositionData = positions.default,
+	animation?: NoggleProps['animation']
 ): string => {
+	const id = nanoid(6);
 	const { frames, eyes } = colors;
 	const { width, height, temple, left, right } = position;
 	let eyeData;
@@ -29,15 +32,25 @@ export const buildNoggle = (
 		`;
 	}
 
-	const svg = `
-	<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" fill="none">
-	<path d="${temple}" fill="${frames[1] || frames[0]}"/>
-	${eyeData ? eyeData : ''}
-	<path fill-rule="evenodd" clip-rule="evenodd" d="${left.frame}" fill="${frames[0]}"/>
-	<path fill-rule="evenodd" clip-rule="evenodd" d="${right.frame}" fill="${frames[1] || frames[0]}"/>
-	</svg>
+	let svg = `
+		<svg id="noggles-${id}" xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" fill="none">
+		<path id="frames-${id}" d="${temple}" fill="${frames[1] || frames[0]}"/>
+		${eyeData ? eyeData : ''}
+		<path id="frames-${id}" fill-rule="evenodd" clip-rule="evenodd" d="${left.frame}" fill="${
+		frames[0]
+	}"/>
+		<path id="frames-${id}" fill-rule="evenodd" clip-rule="evenodd" d="${right.frame}" fill="${
+		frames[1] || frames[0]
+	}"/>
 	`;
 
+	if (animation) {
+		const keyframes = animations[animation].replace('#PLACEHOLDER', `#frames-${id}`);
+		const style = `<style>${keyframes}</style>`;
+		svg += style;
+	}
+
+	svg += '</svg>';
 	return getNoggleDataUrl(svg);
 };
 
@@ -77,30 +90,32 @@ export const validateColors = (colors: string | string[]): boolean => {
 	return validateColor(colors);
 };
 
-export const parseCustomColorProps = (props: string[] | CustomColorNoggleProps) => {
-	if (Array.isArray(props)) props = { frames: props };
-
-	const { frames, eyes } = props;
+export const parseCustomColorProps = (color: string | string[], props?: NoggleProps) => {
 	let colors: NoggleColors;
+	let eyes: string[];
 
-	if (!frames) {
-		throw new Error('Invalid Frames. Frame color required when using Noggles.customColor().');
+	if (!color || (typeof color !== 'string' && !Array.isArray(color))) {
+		throw new Error(
+			'Invalid Frames. Frame color(s) required with Noggles.customColor(). Include a string or  string[] with valid color strings as the first parameter.'
+		);
 	}
 
-	validateColors(frames);
-	if (Array.isArray(frames)) {
-		colors = { frames: frames.slice(0, 2), eyes };
-	} else {
-		colors = { frames: [frames], eyes };
-	}
-
-	if (eyes) {
-		if (!Array.isArray(eyes)) {
+	if (props?.eyes) {
+		eyes = props.eyes;
+		if (!Array.isArray(eyes) || eyes.length < 2) {
 			throw new Error('Invalid Eyes. Must be an array with two valid colors.');
 		}
 		validateColors(eyes);
+		eyes = eyes.slice(0, 2);
 	} else {
-		colors.eyes = ['#fff', '#000'];
+		eyes = ['#fff', '#000'];
+	}
+
+	validateColors(color);
+	if (Array.isArray(color)) {
+		colors = { frames: color.slice(0, 2), eyes };
+	} else {
+		colors = { frames: [color], eyes };
 	}
 
 	return parseNoggleData(colors, props);

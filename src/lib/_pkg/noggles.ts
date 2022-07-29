@@ -1,4 +1,4 @@
-import type { NoggleProps, CustomColorNoggleProps, NamedNoggles } from '../global';
+import type { NoggleProps, NamedNoggles } from '../global';
 import {
 	buildNoggle,
 	getRandomNoggleData,
@@ -19,15 +19,17 @@ export class Noggles {
 
 	static color(color: typeof NamedNoggles[number], props?: NoggleProps): string {
 		const data = glasses.find((g) => color === g.filename);
-		if (!data) throw new Error(`Invalid color(s): ${color}`);
+		if (!data) {
+			throw new Error(
+				`Invalid color. ${color} is not an official noggle color. Use Noggles.customColor() to customize noggle colors.`
+			);
+		}
 		const { colors, position } = parseNoggleData(data.colors, props);
 		return buildNoggle(colors, position);
 	}
 
-	// todo: support separate props for string, string[]. remove custom noggle type
-	static customColor(props: string | string[] | CustomColorNoggleProps): string {
-		if (typeof props === 'string') props = { frames: props };
-		const { colors, position } = parseCustomColorProps(props);
+	static customColor(color: string | string[], props?: NoggleProps): string {
+		const { colors, position } = parseCustomColorProps(color, props);
 		return buildNoggle(colors, position);
 	}
 
@@ -36,8 +38,10 @@ export class Noggles {
 		return buildNoggle(colors, position);
 	}
 
-	// static rainbow(props?: NoggleProps): Noggles {
-	// 	console.log('rainbow noggles!!!');
-	// 	return new Noggles(props);
-	// }
+	static rainbow(props?: NoggleProps): string {
+		if (!props) props = { animation: 'rainbow' };
+		if (props && !props?.animation) props.animation = 'rainbow';
+		const { colors, position } = parseCustomColorProps('red', props);
+		return buildNoggle(colors, position, props.animation);
+	}
 }

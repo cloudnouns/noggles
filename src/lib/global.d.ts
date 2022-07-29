@@ -1,17 +1,9 @@
 export interface NoggleProps {
 	static?: boolean;
 	eyeDirection?: 'forward' | 'forwards' | 'backward' | 'backwards';
-	animation?: AnimationProps;
-	// temple?: 'left' | 'right' | 'none';
-}
-
-export interface CustomColorNoggleProps extends NoggleProps {
-	frames: string | string[];
+	animation?: 'rainbow';
 	eyes?: string[];
-}
-
-export interface AnimationProps {
-	type: 'blink' | 'sideEye' | 'roll';
+	// temple?: 'left' | 'right' | 'none';
 }
 
 export interface NoggleConfigFile {
