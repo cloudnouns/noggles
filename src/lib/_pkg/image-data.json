@@ -7,7 +7,8 @@
 			"colors": {
 				"frames": ["#FF638D"],
 				"eyes": ["#fff", "#000"]
-			}
+			},
+			"hasThickFrames": true
 		},
 		{
 			"id": 1,
@@ -16,15 +17,18 @@
 			"colors": {
 				"frames": ["#000"],
 				"eyes": ["#fff", "#FF0E0E"]
-			}
+			},
+			"hasThickFrames": false
 		},
 		{
 			"id": 2,
 			"filename": "black-rgb",
 			"data": "0x000b1710070300062401000624030003240165022401000324016513240200012401660224015b01240100012401660224015b022402000624010006240300062401000624",
 			"colors": {
-				"frames": ["#000"]
-			}
+				"frames": ["#000"],
+				"eyes": ["#000", "#000"]
+			},
+			"hasThickFrames": false
 		},
 		{
 			"id": 3,
@@ -33,7 +37,8 @@
 			"colors": {
 				"frames": ["#000"],
 				"eyes": ["#fff", "#000"]
-			}
+			},
+			"hasThickFrames": false
 		},
 		{
 			"id": 4,
@@ -42,7 +47,8 @@
 			"colors": {
 				"frames": ["#2B83F6"],
 				"eyes": ["#fff", "#000"]
-			}
+			},
+			"hasThickFrames": false
 		},
 		{
 			"id": 5,
@@ -51,7 +57,8 @@
 			"colors": {
 				"frames": ["#5648ED"],
 				"eyes": ["#fff", "#000"]
-			}
+			},
+			"hasThickFrames": false
 		},
 		{
 			"id": 6,
@@ -60,15 +67,18 @@
 			"colors": {
 				"frames": ["#8DD122"],
 				"eyes": ["#fff", "#000"]
-			}
+			},
+			"hasThickFrames": false
 		},
 		{
 			"id": 7,
 			"filename": "fullblack",
 			"data": "0x000b1710070300062401000624030004240102012401000424010208240102062401020224020006240100072402000624010006240300062401000624",
 			"colors": {
-				"frames": ["#000"]
-			}
+				"frames": ["#000"],
+				"eyes": ["#000", "#000"]
+			},
+			"hasThickFrames": false
 		},
 		{
 			"id": 8,
@@ -77,7 +87,8 @@
 			"colors": {
 				"frames": ["#068940", "#257ced"],
 				"eyes": ["#fff", "#000"]
-			}
+			},
+			"hasThickFrames": false
 		},
 		{
 			"id": 9,
@@ -86,7 +97,8 @@
 			"colors": {
 				"frames": ["#9CB4B8"],
 				"eyes": ["#fff", "#000"]
-			}
+			},
+			"hasThickFrames": false
 		},
 		{
 			"id": 10,
@@ -95,7 +107,8 @@
 			"colors": {
 				"frames": ["#E8705B"],
 				"eyes": ["#fff", "#000"]
-			}
+			},
+			"hasThickFrames": false
 		},
 		{
 			"id": 11,
@@ -104,7 +117,8 @@
 			"colors": {
 				"frames": ["#D19A54"],
 				"eyes": ["#fff", "#000"]
-			}
+			},
+			"hasThickFrames": false
 		},
 		{
 			"id": 12,
@@ -113,7 +127,8 @@
 			"colors": {
 				"frames": ["#B9185C"],
 				"eyes": ["#fff", "#000"]
-			}
+			},
+			"hasThickFrames": false
 		},
 		{
 			"id": 13,
@@ -122,7 +137,8 @@
 			"colors": {
 				"frames": ["#FE500C"],
 				"eyes": ["#fff", "#000"]
-			}
+			},
+			"hasThickFrames": false
 		},
 		{
 			"id": 14,
@@ -131,7 +147,8 @@
 			"colors": {
 				"frames": ["#ff638d", "#cc0595"],
 				"eyes": ["#fff", "#000"]
-			}
+			},
+			"hasThickFrames": false
 		},
 		{
 			"id": 15,
@@ -140,7 +157,8 @@
 			"colors": {
 				"frames": ["#F3322C"],
 				"eyes": ["#fff", "#000"]
-			}
+			},
+			"hasThickFrames": false
 		},
 		{
 			"id": 16,
@@ -149,7 +167,8 @@
 			"colors": {
 				"frames": ["#D7D3CD"],
 				"eyes": ["#fff", "#000"]
-			}
+			},
+			"hasThickFrames": false
 		},
 		{
 			"id": 17,
@@ -158,7 +177,8 @@
 			"colors": {
 				"frames": ["#4BEA69"],
 				"eyes": ["#fff", "#000"]
-			}
+			},
+			"hasThickFrames": false
 		},
 		{
 			"id": 18,
@@ -167,7 +187,8 @@
 			"colors": {
 				"frames": ["#ec5b43"],
 				"eyes": ["#fff", "#000"]
-			}
+			},
+			"hasThickFrames": false
 		},
 		{
 			"id": 19,
@@ -176,7 +197,8 @@
 			"colors": {
 				"frames": ["#ffc110", "#f98f30"],
 				"eyes": ["#fff", "#000"]
-			}
+			},
+			"hasThickFrames": false
 		},
 		{
 			"id": 20,
@@ -185,35 +207,82 @@
 			"colors": {
 				"frames": ["#FFEF16"],
 				"eyes": ["#fff", "#000"]
-			}
+			},
+			"hasThickFrames": false
 		}
 	],
-	"positions": {
-		"default": {
-			"width": 160,
-			"height": 60,
-			"temple": "M30 20H0V50H10V30H30V20Z",
-			"left": {
-				"eye": ["M40 10H60V50H40V10Z", "M60 10H80V50H60V10Z"],
-				"frame": "M30 0H90V60H30V0ZM40 50H80V10H40V50Z"
+	"scales": {
+		"fill": {
+			"dimensions": {
+				"width": 160,
+				"height": 60
 			},
-			"right": {
-				"eye": ["M110 10H130V50H110V10Z", "M130 10H150V50H130V10Z"],
-				"frame": "M160 0H100V20H90V30H100V60H160V0ZM150 50V10H110V50H150Z"
-			}
+			"parts": {
+				"normal": [
+					"M131 9H109V51H131V9Z",
+					"M61 9H39V51H61V9Z",
+					"M151 9H130V51H151V9Z",
+					"M81 9H60V51H81V9Z",
+					"M31 20H0V50H10V30H31V20Z",
+					"M160 0H100V20H89V30H100V60H160V0ZM150 50V10H110V50H150Z",
+					"M30 0H90V60H30V0ZM40 50H80V10H40V50Z"
+				],
+				"thick": [
+					"M131 9H109V51H131V9Z",
+					"M61 9H39V51H61V9Z",
+					"M151 9H130V51H151V9Z",
+					"M81 9H60V51H81V9Z",
+					"M31 20H0V50H10V40H31V20Z",
+					"M160 0H100V20H89V40H100V60H160V0ZM150 50V10H110V50H150Z",
+					"M30 0H90V60H30V0ZM40 50H80V10H40V50Z"
+				]
+			},
+			"extraParts": [
+				{ "glasses": 2, "path": "M70 10H60V20H70V10Z", "color": "#FF0E0E" },
+				{ "glasses": 2, "path": "M140 10H130V20H140V10Z", "color": "#FF0E0E" },
+				{ "glasses": 2, "path": "M50 30H40V40H50V30Z", "color": "#0ADC4D" },
+				{ "glasses": 2, "path": "M80 30H70V40H80V30Z", "color": "#1929F4" },
+				{ "glasses": 2, "path": "M120 30H110V40H120V30Z", "color": "#0ADC4D" },
+				{ "glasses": 2, "path": "M150 30H140V40H150V30Z", "color": "#1929F4" },
+				{ "glasses": 7, "path": "M150 10H140V30H150V10Z", "color": "#fff" },
+				{ "glasses": 7, "path": "M80 10H70V30H80V10Z", "color": "#fff" }
+			]
 		},
 		"static": {
-			"width": 320,
-			"height": 320,
-			"temple": "M100 130H70V160H80V140H100V130Z",
-			"left": {
-				"eye": ["M110 120H130V160H110V120Z", "M130 120H150V160H130V120Z"],
-				"frame": "M100 110H160V170H100V110ZM110 160H150V120H110V160Z"
+			"dimensions": {
+				"width": 320,
+				"height": 320
 			},
-			"right": {
-				"eye": ["M180 120H200V160H180V120Z", "M200 120H220V160H200V120Z"],
-				"frame": "M230 110H170V130H160V140H170V170H230V110ZM220 160V120H180V160H220Z"
-			}
+			"parts": {
+				"normal": [
+					"M201 119H179V161H201V119Z",
+					"M131 119H109V161H131V119Z",
+					"M221 119H200V161H221V119Z",
+					"M151 119H130V161H151V119Z",
+					"M101 130H70V160H80V140H101V130Z",
+					"M230 110H170V130H159V140H170V170H230V110ZM220 160V120H180V160H220Z",
+					"M100 110H160V170H100V110ZM110 160H150V120H110V160Z"
+				],
+				"thick": [
+					"M201 119H179V161H201V119Z",
+					"M131 119H109V161H131V119Z",
+					"M221 119H200V161H221V119Z",
+					"M151 119H130V161H151V119Z",
+					"M101 130H70V160H80V150H101V130Z",
+					"M230 110H170V130H159V150H170V170H230V110ZM220 160V120H180V160H220Z",
+					"M100 110H160V170H100V110ZM110 160H150V120H110V160Z"
+				]
+			},
+			"extraParts": [
+				{ "glasses": 2, "path": "M140 120H130V130H140V120Z", "color": "#FF0E0E" },
+				{ "glasses": 2, "path": "M210 120H200V130H210V120Z", "color": "#FF0E0E" },
+				{ "glasses": 2, "path": "M120 140H110V150H120V140Z", "color": "#0ADC4D" },
+				{ "glasses": 2, "path": "M150 140H140V150H150V140Z", "color": "#1929F4" },
+				{ "glasses": 2, "path": "M190 140H180V150H190V140Z", "color": "#0ADC4D" },
+				{ "glasses": 2, "path": "M220 140H210V150H220V140Z", "color": "#1929F4" },
+				{ "glasses": 7, "path": "M220 120H210V140H220V120Z", "color": "#fff" },
+				{ "glasses": 7, "path": "M150 120H140V140H150V120Z", "color": "#fff" }
+			]
 		}
 	}
 }

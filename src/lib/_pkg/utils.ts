@@ -1,8 +1,9 @@
 import type {
+	FrameType,
+	Noggle,
 	NoggleColors,
 	NoggleConfigFile,
 	NoggleData,
-	PositionData,
 	NoggleProps
 } from '$lib/global';
 import { animations } from './animations';
@@ -11,38 +12,34 @@ import ImageData from './image-data.json';
 import validateColor from 'validate-color';
 
 const Config: NoggleConfigFile = ImageData;
-export const { glasses, positions } = Config;
+export const { glasses, scales } = Config;
 
-export const buildNoggle = (
-	colors: NoggleColors,
-	position: PositionData = positions.default,
-	animation?: NoggleProps['animation']
-): string => {
+export const buildNoggle = (noggleData: Noggle, animation?: NoggleProps['animation']): string => {
 	const id = nanoid(6);
+	const { colors, frameType, scale, extraParts } = noggleData;
 	const { frames, eyes } = colors;
-	const { width, height, temple, left, right } = position;
-	let eyeData;
-
-	if (eyes) {
-		eyeData = `
-		<path d="${left.eye[0]}" fill="${eyes[0]}"/>
-		<path d="${left.eye[1]}" fill="${eyes[1]}"/>
-		<path d="${right.eye[0]}" fill="${eyes[0]}"/>
-		<path d="${right.eye[1]}" fill="${eyes[1]}"/>
-		`;
-	}
+	const { dimensions, parts } = scale;
+	const { width, height } = dimensions;
+	const items = frameType === 'thick' ? parts.thick : parts.normal;
 
 	let svg = `
 		<svg id="noggles-${id}" xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" fill="none">
-		<path id="frames-${id}" d="${temple}" fill="${frames[1] || frames[0]}"/>
-		${eyeData ? eyeData : ''}
-		<path id="frames-${id}" fill-rule="evenodd" clip-rule="evenodd" d="${left.frame}" fill="${
-		frames[0]
-	}"/>
-		<path id="frames-${id}" fill-rule="evenodd" clip-rule="evenodd" d="${right.frame}" fill="${
+		<path d="${items[0]}" fill="${eyes[0]}"/>
+		<path d="${items[1]}" fill="${eyes[0]}"/>
+		<path d="${items[2]}" fill="${eyes[1]}"/>
+		<path d="${items[3]}" fill="${eyes[1]}"/>
+		<path id="frames-${id}" d="${items[4]}" fill="${frames[1] || frames[0]}"/>
+		<path id="frames-${id}" fill-rule="evenodd" clip-rule="evenodd" d="${items[5]}" fill="${
 		frames[1] || frames[0]
 	}"/>
+	<path id="frames-${id}" fill-rule="evenodd" clip-rule="evenodd" d="${items[6]}" fill="${
+		frames[0]
+	}"/>
 	`;
+
+	if (extraParts && extraParts.length) {
+		svg = extraParts.reduce((a, b) => a + `<path d="${b.path}" fill="${b.color}"/>`, svg);
+	}
 
 	if (animation) {
 		const keyframes = animations[animation].replace('#PLACEHOLDER', `#frames-${id}`);
@@ -118,15 +115,30 @@ export const parseCustomColorProps = (color: string | string[], props?: NogglePr
 		colors = { frames: [color], eyes };
 	}
 
-	return parseNoggleData(colors, props);
+	const noggleData: NoggleData = {
+		id: -1,
+		filename: 'custom',
+		data: '',
+		colors,
+		hasThickFrames: false
+	};
+
+	return parseNoggleData(noggleData, props);
 };
 
-export const parseNoggleData = (colors: NoggleColors, props?: NoggleProps) => {
-	const position = props?.static ? positions.static : positions.default;
+export const parseNoggleData = (data: NoggleData, props?: NoggleProps): Noggle => {
+	const { colors, hasThickFrames } = data;
+	const scale = props?.static ? scales.static : scales.fill;
+
+	const frameType: FrameType = hasThickFrames ? 'thick' : 'normal';
+	const extraParts = scale.extraParts.filter((g) => g.glasses === data.id);
+
 	if (props?.eyeDirection) {
 		if (['backward', 'backwards'].includes(props?.eyeDirection)) {
 			colors.eyes?.reverse();
 		}
 	}
-	return { colors, position };
+
+	const noggle: Noggle = { colors, frameType, scale, extraParts };
+	return noggle;
 };

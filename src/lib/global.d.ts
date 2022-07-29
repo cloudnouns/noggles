@@ -6,9 +6,24 @@ export interface NoggleProps {
 	// temple?: 'left' | 'right' | 'none';
 }
 
+export type FrameType = 'normal' | 'thick';
+
+export interface ExtraPart {
+	glasses: number;
+	path: string;
+	color: string;
+}
+
+export interface Noggle {
+	frameType: FrameType;
+	colors: NoggleColors;
+	scale: ScaleData;
+	extraParts?: ExtraPart[];
+}
+
 export interface NoggleConfigFile {
 	glasses: NoggleData[];
-	positions: Positions;
+	scales: Scales;
 }
 
 export interface NoggleData {
@@ -16,30 +31,29 @@ export interface NoggleData {
 	filename: string;
 	data: string;
 	colors: NoggleColors;
+	hasThickFrames?: boolean;
 }
 
 export interface NoggleColors {
 	frames: string[];
-	eyes?: string[];
+	eyes: string[];
 }
 
-export interface Positions {
-	default: PositionData;
-	static: PositionData;
+export interface Scales {
+	fill: ScaleData;
+	static: ScaleData;
 }
 
-export interface PositionData {
-	width: number;
-	height: number;
-	temple: string;
-	left: {
-		eye: string[];
-		frame: string;
+export interface ScaleData {
+	dimensions: {
+		width: number;
+		height: number;
 	};
-	right: {
-		eye: string[];
-		frame: string;
+	parts: {
+		normal: string[];
+		thick: string[];
 	};
+	extraParts: ExtraPart[];
 }
 
 export const NamedNoggles = [
