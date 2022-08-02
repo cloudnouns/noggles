@@ -8,7 +8,7 @@ import type {
 } from '$lib/global';
 import { animations } from './animations.js';
 import { nanoid } from 'nanoid';
-import ImageData from './image-data.json';
+import ImageData from './image-data.json' assert { type: 'json' };
 import validateColor from 'validate-color';
 
 const Config: NoggleConfigFile = ImageData;
