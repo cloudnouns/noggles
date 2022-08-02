@@ -9,7 +9,7 @@ import type {
 import { animations } from './animations.js';
 import { nanoid } from 'nanoid';
 import ImageData from './image-data.json' assert { type: 'json' };
-import validateColor from 'validate-color';
+import { validateColor } from './validate-color.js';
 
 const Config: NoggleConfigFile = ImageData;
 export const { glasses, scales } = Config;

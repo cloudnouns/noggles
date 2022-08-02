@@ -4,7 +4,7 @@
 
 	let noun = new Noun({ traits: { glasses: 'n' } });
 
-	const n1 = Noggles.random({ static: true });
+	const n1 = Noggles.random();
 	// const noggle = Noggle.random().animate()
 </script>
 
@@ -13,6 +13,6 @@
 		<div class="absolute top-0 left-0 w-full">
 			<img src={n1} alt="" class="w-full" />
 		</div>
-		<img src={noun.images.svg} alt="" class="w-full" />
+		<!-- <img src={noun.images.svg} alt="" class="w-full" /> -->
 	</div>
 </div>
