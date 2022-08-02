@@ -5,7 +5,7 @@ import {
 	glasses,
 	parseCustomColorProps,
 	parseNoggleData
-} from './utils';
+} from './utils.js';
 import randomColor from 'randomcolor';
 
 export class Noggles {

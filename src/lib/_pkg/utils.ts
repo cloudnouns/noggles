@@ -6,7 +6,7 @@ import type {
 	NoggleData,
 	NoggleProps
 } from '$lib/global';
-import { animations } from './animations';
+import { animations } from './animations.js';
 import { nanoid } from 'nanoid';
 import ImageData from './image-data.json';
 import validateColor from 'validate-color';
