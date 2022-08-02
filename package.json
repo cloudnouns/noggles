@@ -27,6 +27,7 @@
 		"eslint": "^8.16.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-svelte3": "^4.0.0",
+		"flubber": "^0.4.2",
 		"motion": "^10.13.1",
 		"postcss": "^8.4.14",
 		"postcss-load-config": "^4.0.1",
@@ -43,6 +44,7 @@
 	},
 	"dependencies": {
 		"nanoid": "^4.0.0",
+		"randomcolor": "^0.6.2",
 		"validate-color": "^2.2.1"
 	}
 }

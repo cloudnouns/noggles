@@ -6,6 +6,7 @@ import {
 	parseCustomColorProps,
 	parseNoggleData
 } from './utils';
+import randomColor from 'randomcolor';
 
 export class Noggles {
 	// private constructor(props?: NoggleProps) {}
@@ -34,8 +35,17 @@ export class Noggles {
 	}
 
 	static random(props?: NoggleProps): string {
-		const noggle = parseNoggleData(getRandomNoggleData(), props);
-		return buildNoggle(noggle);
+		if (props?.restrictColors) {
+			const noggle = parseNoggleData(getRandomNoggleData(), props);
+			return buildNoggle(noggle);
+		} else if (props?.multicolor) {
+			return Noggles.customColor([randomColor(), randomColor()], props);
+		} else if (props?.multicolor === false) {
+			return Noggles.customColor(randomColor(), props);
+		} else {
+			if (Math.round(Math.random())) return Noggles.customColor(randomColor(), props);
+			return Noggles.customColor([randomColor(), randomColor()], props);
+		}
 	}
 
 	static rainbow(props?: NoggleProps): string {

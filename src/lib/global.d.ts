@@ -3,6 +3,8 @@ export interface NoggleProps {
 	eyeDirection?: 'forward' | 'forwards' | 'backward' | 'backwards';
 	animation?: 'rainbow';
 	eyes?: string[];
+	restrictColors?: boolean;
+	multicolor?: boolean;
 	// temple?: 'left' | 'right' | 'none';
 }
 
