@@ -1,6 +1,6 @@
 {
 	"name": "noggles",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"author": "Badu Blanc <badu@hey.com>",
 	"repository": "git://github.com/cloudnouns/noggles.git",
 	"type": "module",
