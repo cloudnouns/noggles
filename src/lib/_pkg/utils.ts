@@ -1,18 +1,10 @@
-import type {
-	FrameType,
-	Noggle,
-	NoggleColors,
-	NoggleConfigFile,
-	NoggleData,
-	NoggleProps
-} from '$lib/global';
+import type { FrameType, Noggle, NoggleColors, NoggleData, NoggleProps } from '$lib/global';
 import { animations } from './animations.js';
 import { nanoid } from 'nanoid';
-import ImageData from './image-data.json' assert { type: 'json' };
+import { ImageData } from './image-data.js';
 import { validateColor } from './validate-color.js';
 
-const Config: NoggleConfigFile = ImageData;
-export const { glasses, scales } = Config;
+export const { glasses, scales } = ImageData;
 
 export const buildNoggle = (noggleData: Noggle, animation?: NoggleProps['animation']): string => {
 	const id = nanoid(6);
